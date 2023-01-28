@@ -15,6 +15,14 @@ public class Payment {
     @Enumerated(value = EnumType.STRING)
     private PaymentMode paymentMode;
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     @OneToOne
     @JoinColumn
     private Reservation reservation;

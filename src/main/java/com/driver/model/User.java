@@ -20,6 +20,14 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Reservation> reservationList = new ArrayList<>();
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public User(String name, String phoneNumber, String password) {
         this.name = name;
         this.phoneNumber = phoneNumber;
