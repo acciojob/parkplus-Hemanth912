@@ -59,7 +59,8 @@ public class ParkingLotServiceImpl implements ParkingLotService {
         ParkingLot parkingLot = spot.getParkingLot();
         List<Spot> spotList = parkingLot.getSpotList();
 
-        spotList.remove(spot);
+        if(spotList.contains(spot))
+            spotList.remove(spot);
 
         parkingLot.setSpotList(spotList);
 

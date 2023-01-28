@@ -64,8 +64,10 @@ public class PaymentServiceImpl implements PaymentService {
                 }
                 else
                     throw new Exception("Insufficient Amount");
+
             }
+            throw new Exception("Payment mode not detected");
         }
-        throw new Exception("Payment mode not detected");
+        return null;
     }
 }
