@@ -36,13 +36,13 @@ public class ReservationServiceImpl implements ReservationService {
         Spot reservespot=null;
         for(Spot spot : spots)
         {
-            if(!spot.isOccupied())
+            if(!spot.getOccupied())
             {
                 price = Math.min(spot.getPricePerHour()*timeInHours,price);
             }
         }
         for(Spot spot:spots) {
-            if ((spot.getPricePerHour() * timeInHours == price) && !spot.isOccupied()) {
+            if ((spot.getPricePerHour() * timeInHours == price) && !spot.getOccupied()) {
                 if (spot.getSpotType() == SpotType.TWO_WHEELER)
                     num = 2;
                 else if (spot.getSpotType() == SpotType.FOUR_WHEELER)
