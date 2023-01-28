@@ -62,11 +62,11 @@ public class PaymentServiceImpl implements PaymentService {
                     reservationRepository2.save(reservation);
                     return pay;
                 }
-                else
-                    throw new Exception("Insufficient Amount");
+//                else
+//                    throw new Exception("Insufficient Amount");
 
             }
-            throw new Exception("Payment mode not detected");
+//            throw new Exception("Payment mode not detected");
         }
         return null;
     }
