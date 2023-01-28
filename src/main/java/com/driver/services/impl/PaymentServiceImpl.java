@@ -33,10 +33,13 @@ public class PaymentServiceImpl implements PaymentService {
 
         int bill = reservation.getNumberOfHours()*spot.getPricePerHour();
 
-        ParkingLot parkingLot = spot.getParkingLot();
-        List<Spot> spotList = parkingLot.getSpotList();
+        if(bill>amountSent)
+            throw new Exception("Insufficient Amount");
 
-        String paymentMode = mode.toUpperCase();
+//        ParkingLot parkingLot = spot.getParkingLot();
+//        List<Spot> spotList = parkingLot.getSpotList();
+
+        /*String paymentMode = mode.toUpperCase();
         PaymentMode[] paymentModes = PaymentMode.values();
         Payment pay= null;
         for(PaymentMode p : paymentModes)
@@ -68,6 +71,31 @@ public class PaymentServiceImpl implements PaymentService {
             }
 //            throw new Exception("Payment mode not detected");
         }
-        return null;
+        return null;*/
+        if(mode.equalsIgnoreCase("cash") || mode.equalsIgnoreCase("card") || mode.equalsIgnoreCase("upi") ){
+            Payment payment=new Payment();
+
+            if(mode.equalsIgnoreCase("cash")){
+                payment.setPaymentMode(PaymentMode.CASH);
+            }
+            else if(mode.equalsIgnoreCase("card")){
+                payment.setPaymentMode(PaymentMode.CARD);
+            }
+            else payment.setPaymentMode(PaymentMode.UPI);
+
+            payment.setPaymentCompleted(true);
+            payment.setReservation(reservation);
+
+            reservation.setPayment(payment);
+
+
+
+            reservationRepository2.save(reservation);
+
+            return payment;
+
+
+        }
+        else throw new Exception("Payment mode not detected");
     }
 }
